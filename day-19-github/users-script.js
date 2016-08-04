@@ -23,8 +23,8 @@ function getData() {
 
 function keyUpHappened(evt) {
   console.log(evt.keyCode);
-  console.log(this);
-  
+  console.log(this); //<-- this is the input
+
   if (evt.keyCode === 13) {
     getData();
   }
