@@ -12,10 +12,17 @@ if (window.JSApp === undefined) window.JSApp = {};
     $issuesList.empty();
 
     for (var i = 0; i < data.items.length; i++) {
+
+      var body = data.items[i].body;
+      if (body !== null && body.indexOf('<style') > -1) { //do we even need to do this?
+        body = body.replace('<style', '<pre') //replace opening tag
+        body = body.replace('</style', '</pre')
+      }
+
       var html = '<li>' +
         '<div class="title">' + data.items[i].title + '</div>' +
         '<div class="state">' + data.items[i].state + '</div>' +
-        '<div class="body">' + data.items[i].body + '</div>' +
+        '<div class="body">' + body + '</div>' +
       '</li>'
 
       $issuesList.append(html);
